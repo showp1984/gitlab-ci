@@ -1,9 +1,12 @@
 class BuildsController < ApplicationController
-  before_filter :authenticate_user!, except: [:status]
+  before_filter :authenticate_user!, except: [:status, :show]
   before_filter :project
-  before_filter :authorize_access_project!, except: [:status]
+  before_filter :authorize_access_project!, except: [:status, :show]
 
   def show
+    unless @project.public || current_user
+      authenticate_user! and return
+    end
     @builds = builds
 
     @build = if params[:bid]
