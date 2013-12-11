@@ -71,25 +71,26 @@
         - if @build.runner
           \##{@build.runner.id}
 
-    .build-widget
-      %h4.title
-        Commit
-        .pull-right
-          %small #{build_commit_link @build}
+    - if current_user
+      .build-widget
+        %h4.title
+          Commit
+          .pull-right
+            %small #{build_commit_link @build}
 
-      - if @build.compare?
+        - if @build.compare?
+          %p
+            %span.attr-name Compare:
+            #{build_compare_link @build}
         %p
-          %span.attr-name Compare:
-          #{build_compare_link @build}
-      %p
-        %span.attr-name Branch:
-        #{build_ref_link @build}
-      %p
-        %span.attr-name Author:
-        #{@build.git_author_name}
-      %p
-        %span.attr-name Message:
-        #{@build.git_commit_message}
+          %span.attr-name Branch:
+          #{build_ref_link @build}
+        %p
+          %span.attr-name Author:
+          #{@build.git_author_name}
+        %p
+          %span.attr-name Message:
+          #{@build.git_commit_message}
 
     - if @builds.present?
       .build-widget
