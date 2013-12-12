@@ -29,7 +29,7 @@ $(document).ready ->
   console.log "run"
   setTimeout (->
     $.get buildPath + ".js?bid=" + buildId
-  ), 3000
+  ), 15000
 
 @checkAutoscroll = ->
   $("html,body").scrollTop $("#build-trace").height()  if "enabled" is $("#autoscroll-button_top").data("state")
